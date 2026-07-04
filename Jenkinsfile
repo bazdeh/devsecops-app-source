@@ -73,6 +73,9 @@
                         git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@${GITOPS_REPO_URL} manifest-temp
                         cd manifest-temp
                         
+                        # Programmatically search and replace the outdated image tag version with the newest tag build number
+                        sed -i "s|image: bazdeh/devsecops-secure-app:.*|image: bazdeh/devsecops-secure-app:${IMAGE_TAG}|g" deployment.yaml
+
                         # We will update deployment tags here once we create manifests in Phase 5
                         echo "Image Tag Updated to ${IMAGE_TAG}" > image_tracking.txt
                         
